@@ -1,0 +1,16 @@
+<project basedir="." default="build">
+
+<target name="clean">
+	<delete>
+	   <fileset dir=".">
+	      <include name="**/*.class"/>
+	   </fileset>
+	</delete>
+</target>	
+	
+<target name="build">
+	<javac srcdir="."  includes="P5.java" target="1.6">
+
+	    </javac>
+</target>
+</project>
