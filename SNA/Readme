@@ -1,0 +1,27 @@
+The Project folder has 3 JAVA code files - 
+1. Graph.java
+2. Main.java
+3. Node.java
+
+Data files to be taken from Dropbox (The files have been shared with Priyatosh)- 
+https://www.dropbox.com/sh/wj5hq6fjf1agrvd/T3dNZsBKta
+
+A make file is present to compile the code.
+
+Instructions to run the code - 
+
+1. Place the files from dropbox shared folder into the source folder. 
+The file names are - 
+	1. mention_sorted_adjlist.csv
+	2. reply_sorted_adjlist.csv
+	3. retweet_sorted_adjlist.csv
+	4. social_sorted_adjlist.csv
+
+2. run command - make 
+3. run command - java Main > output
+
+Interpreting the output - 
+For every value of Beta, output of the following type is obtained on 20 runs of the algorithm - 
+Active : 1.970956855754423   Hyperactive : 0.0
+Here 1.970956855754423 is the percentage of Active nodes and 0.0 is the percentage of Hyperactive nodes in the graph.
+
