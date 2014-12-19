@@ -1,0 +1,264 @@
+(* The input lists for arithmetic should be of the for  -3  4  -5  0  0  0 =  -3.x^5 + 4.x^4 - 5.x^3  *);
+
+(*gives the length = degree+1 of a polynomial as an int number*)
+
+fun len(x) = if null(x) then 0
+	     else 1+ len(tl(x));
+	     
+(*gives the length = degree+1 of a polynomial as a real number*)
+	     
+fun len_real(x) = if null(x) then 0.0
+	     else (1.0+ len_real(tl(x))):real;
+	     
+(* gives a polynomial by appending x number of zeroes. Useed to balance polynomials of different degrees by adding leading zeroes to the one with less degree*)
+	     
+fun append_get_zeroes (x) = if x=0 then nil
+		   	    else 0.0::append_get_zeroes(x-1);
+		 
+(*appends z to x*)
+
+fun append_forward(x,z) = if null(x) then z
+			  else if null(z) then x
+			  else hd(x)::append_forward(tl(x),z)
+			  
+(*appends x number of zeroes before y*)
+fun append_backward (x,y) = if x=0 then y
+		   else 0.0::append_backward(x-1,y);
+	
+(*real addition*)
+fun map add  (nil ,nil) =nil
+| map add(a::y,nil)=add( a,0.0) :: (map add (y,nil))
+| map add(nil,b::z)=add( b,0.0) :: (map add(nil,z))
+| map add (a::y , b::z) = (add (a,b)) :: (map add (y,z));
+fun add (a,b)  = (a:real)+(b:real);
+
+(*real subtraction*)
+fun map s  (nil ,nil) =nil
+| map s (a::y,nil)= s ( a,0.0) :: (map s (y,nil))
+| map s (nil,b::z)= s ( 0.0,b) :: (map s (nil,z))
+| map s (a::y , b::z) = (s (a,b)) :: (map s (y,z));
+fun s (a,b)  = (a:real)-(b:real);
+
+
+(*calling function of addition*)
+fun addition (x,y) = let 
+			val l1 = len(x)
+			val l2 = len(y)
+		     in			
+				
+			if l1> l2 then map add(x,append_backward(l1-l2,y)) 
+		     	else if l1<l2 then map add(append_backward(l2-l1,x),y)
+		     	else map add(x,y)
+		   
+		     end
+(*calling function of subtraction*)	     
+fun subtraction (x,y) = let 
+			val l1 = len(x)
+			val l2 = len(y)
+		     in			
+				
+			if l1> l2 then map s(x,append_backward(l1-l2,y)) 
+		     	else if l1<l2 then map s(append_backward(l2-l1,x),y)
+		     	else map s(x,y)
+		   
+		     end
+		     
+(*performing multiplication on reals*)	    
+ 
+fun mult (a,b) = if null(b) then nil
+		 else if null (a) then nil
+		 else (((hd(a):real)*(hd(b):real)):real) :: mult (tl(a),b);
+
+(*perfroms multiplication by multiplying each element of P1 with entire P2 and do it for all. then add all such polynomials obtained by individual multiplications*)
+		 
+fun m(a,b) = let 
+		val l = len(b);
+	     in
+	     	if null(b) then nil
+	     	else if null(a) then nil
+	     	else append_forward(mult(a,hd(b)::[]),append_get_zeroes(l-1))::m(a,tl(b))
+	     end
+	     
+(*perfroming sum of all the polynomials obtained from the above function*)
+fun sum_of_all(x) = if null(x) then nil
+		    else addition(hd(x),sum_of_all(tl(x)));
+
+(*multiplication function*)
+fun multiplication (x,y) = let
+			   	val l1 = len(x)
+			   	val l2 = len(y)
+			   in
+			   	if l1> l2 then  sum_of_all(m(x,append_backward(l1-l2,y))) 
+	     			else if l1<l2 then sum_of_all(m(append_backward(l2-l1,x),y))
+		    	 	else sum_of_all(m (x,y))
+		    	   end
+(*integration function*)
+fun integration(x,y) = let 
+			val l = len_real(x)
+			in
+				if null(x) then y(*contstant of integration*)
+				else (hd(x):real) / l :: integration(tl(x),y)
+			end 
+
+(*truncating the leading zeroes*)
+
+fun truncate (x) = if null(x) then nil
+		   else if  hd(x) < 0.1 andalso ~0.1<hd(x) then truncate (tl(x))
+			else x;
+			
+			
+			
+(*function for division*)
+fun divi(x,y) = let
+			val l1 =len(x)
+			val l2 = len(y)
+			
+		   in
+			if l2<l1 then nil 
+			else 
+			let
+			val head = (hd(y):real) / (hd(x):real)
+			val temp = append_get_zeroes(l2-l1)
+			val first =  append_forward(head::[],temp)
+			val intermediate  = multiplication(x,first)
+			val second = subtraction(y,intermediate)
+			val new_second = truncate(second)
+			in
+			 first::divi(x,new_second)
+		   end
+		   end
+(*function calling division y/x*)
+
+fun division(x,y) =  if null(x) then nil
+			else if null(y) then nil
+			else
+			sum_of_all(divi(x,y));
+			
+(* function for finding the remainder of y/x*)
+
+fun remainder (x,y) = let val v1 = division(x,y)
+			val v2 = multiplication(x,v1)
+			in subtraction(y,v2)
+			end
+
+
+(*finding power of y^v2*)
+
+fun power(y,v2) = if v2=0 then 1
+		  else y* power(y,v2-1);
+		  
+(*finding if y is a root of x*) 
+
+fun is_root(x,y) = if null(x) then 0
+			else
+		   let val v1 = hd(x)
+		   val v2 = len(x)
+		   val v3 =  v1*power(y,v2-1)
+		   val v4 = v3+  is_root(tl(x),y)
+		   in
+		   	if v4=0
+		   	then 1
+		   	else v4
+		   end				
+	
+(*of all the factors available , it finds the ones which are the roots of the polynomial*)
+		
+fun linear_factors(x,factors) = 
+			if null(x) then nil
+			else if null(factors) then nil
+			else 
+			let val v1 = is_root(x,hd(factors))
+			in
+				if v1 = 1
+				then hd(factors) :: linear_factors(x,tl(factors))
+				else
+				linear_factors(x,tl(factors))
+			end
+			
+(*returns the negation of a number*)
+	
+fun negation(x) = ~x;
+		
+(* makes all the possible linear roots of a polynomial by finding the factors of the constant term in a polynomial *)
+	
+fun check_factors(x,y) = if x =0 then nil  
+			else if y mod x =0 then 
+			 let val v1 = append_forward(x::[],negation(x)::[])	 (*check is x is a factor of y*)
+			  in append_forward(v1,check_factors(x-1,y))
+			  end
+			  else
+			  check_factors(x-1,y);	 
+			  
+(*gives the last element of a list*)		
+				
+fun last_element(x) = if null(tl(x)) then hd(x)
+			else last_element(tl(x)); 
+			
+(*finds the factors of polynomial x*)
+					
+fun factorisation(x) =
+		       let val v1 = last_element(x)
+		       
+		       in
+			linear_factors(x,check_factors(v1,v1))
+			end
+(*adds two lists as integers*)
+
+fun map add1  (nil ,nil) =nil
+| map add1(a::y,nil)=add1( a,0) :: (map add1 (y,nil))
+| map add1(nil,b::z)=add1( b,0) :: (map add1(nil,z))
+| map add1 (a::y , b::z) = (add1 (a,b)) :: (map add1 (y,z));
+fun add1 (a,b)  = a+b;
+
+(*appends integer 0 x number of times, to y*)
+
+fun append_backward1 (x,y) = if x=0 then y
+		   else 0::append_backward1(x-1,y);
+
+(*calls intger addition function after balancing the list sizes by appening leading zeroes appropriately*)
+
+fun addition1 (x,y) = let 
+			val l1 = len(x)
+			val l2 = len(y)
+		     in			
+				
+			if l1> l2 then map add1(x,append_backward1(l1-l2,y)) 
+		     	else if l1<l2 then map add1(append_backward1(l2-l1,x),y)
+		     	else map add1(x,y)
+		   
+		     end
+		     
+(* fiinally checks if the factors we have found are correct or not. useful for finding common factors*)	     
+		     			
+fun check_again(x,y,z)
+		=  if null(z) then nil
+			else if is_root(x,hd(z))=1 andalso is_root(y,hd(z))=1
+			then hd(z) :: check_again(x,y,tl(z))
+			else
+			 check_again(x,y,tl(z));
+			 
+(*functions called to find common factors between x and y polynomials*)
+
+fun common_factors(x,y) = let 
+				val v1 = factorisation(addition1(x,y));
+			 in check_again(x,y,v1)
+			end
+			
+(*to find the partial fractions coefficients A and B of (N/(D1*D2) = A/D1 + B/D2*)
+
+fun partial(n,d1,d2) = 
+		let
+		val v1 = last_element(d1)
+		val v2 = last_element(d2)
+		val root1 = negation(v1)
+		val root2 = negation(v2)
+		val numerator = is_root(n,root1)
+		val denominator = is_root(d2,root1)
+		val a = numerator div denominator
+		
+		val numerator1 = is_root(n,root2)
+		val denominator1 = is_root(d1,root2)
+		val b = numerator1 div denominator1
+		
+		in append_forward(a::[],b::[])
+		end

@@ -1,0 +1,50 @@
+How to use - 
+1. Addition -> 
+	function = addition();
+	usage = addition(l1,l2);
+	example = addition([1.0,~2.0,4.4],[5.0]);
+	output = val it = [1.0, ~2.0, 9.4] : real list
+	
+2. Subtraction ->
+	function = subtraction();
+	usage = subtraction(l1,l2);
+	example = subtraction([1.0,~2.0,4.4],[5.0]);
+	output = val it = [1.0, ~2.0, ~0.6] : real list
+
+3. Multiplication ->
+	function = multiplication();
+	usage = multiplication(l1,l2);
+	example = multiplication([1.0,~2.0,4.4],[5.0]);
+	output =val it = [0.0, 0.0, 5.0, ~10.0, 22.0] : real list
+
+4. Division ->
+	function = division();
+	usage = division(l1,l2);
+	example = division([5.0],[1.0,~2.0,4.4]);
+	output = val it = [0.2, ~0.4, 0.88] : real list
+
+5. Integration -> 
+	function = integration();
+	usage = integration(l1,l2);
+	example = integration([1.0,~2.0,4.4],[5.0]);
+	output = val it = [0.3333333333, ~1.0, 4.4, 5.0] : real list
+	
+6. Factorisation - >
+	
+	function = factorisation();
+	usage = factorisation(l1);
+	example = factorisation([1,~5,6]);
+	val it = [3, 2] : int list
+	
+7. Common factors ->
+	function = common_factors();
+	usage =common_factors(l1,l2);
+	example = common_factors([1,~5,6],[1,~4,4]);
+	val it = [2] : int list
+
+8. Partial fractions ->
+	function = partial();
+	usage =partial(n,l1,l2);
+	example = partial([3,~5],[1,~2],[1,~1]);
+	val it = [1, 2] : int list
+
