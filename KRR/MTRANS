@@ -1,0 +1,123 @@
+advise $present
+suggest $present
+accept $present
+attack result = var2 mental_state -3 $present
+hurt result = var2 mental_state -3 $present
+bestow result = var2 mental_state 2 $present
+communicate $present
+confess $present
+confide $present
+deliver $present
+dislike result = var1 anger -3 $present
+drop $present
+envy result = var1 mental_state -4 $present
+explain $present
+envy result = var1 fear -5 $present
+fill $present
+hate result = var1 anger -3 $present
+inform $present
+like result = var1 mental_state 2 $present
+present $present
+show $present
+recall $present
+receive $present
+recite $present
+remember $present
+send $present
+take $present
+teach $present
+think $present
+understand $present
+advises $sing_present
+suggest $sing_present
+accepts $sing_present
+attacks result = var2 mental_state -3 $sing_present
+hurts result = var2 mental_state -3 $sing_present
+bestows result = var2 mental_state 2 $sing_present
+communicates $sing_present
+confesses $sing_present
+confides $sing_present
+delivers $sing_present
+dislikes result = var1 anger -3 $sing_present
+drops $sing_present
+envies result = var1 mental_state -4 $sing_present
+explains $sing_present
+envies result = var1 fear -5 $sing_present
+fills $sing_present
+hates result = var1 anger -3 $sing_present
+informs $sing_present
+likes result = var1 mental_state 2 $sing_present
+presents $sing_present
+shows $sing_present
+reads $sing_present 
+recalls $sing_present
+receives $sing_present
+recites $sing_present
+remembers $sing_present
+sends $sing_present
+takes $sing_present
+teaches $sing_present
+thinks $sing_present
+understands $sing_present
+advised $past
+suggested $past
+accepted $past
+attacked result = var2 mental_state -3 $past
+bestowed result = var2 mental_state 2 $past
+communicated $past
+confessed $past
+confided $past
+delivered $past
+disliked result = var1 anger -3 $past
+dropped $past
+envied result = var1 mental_state -4 $past
+explained $past
+envied result = var1 fear -5 $past
+filled $past
+hated result = var1 anger -3 $past
+informed $past
+liked result = var1 mental_state 2 $past
+presented $past
+showed $past
+read $past
+recalled $past
+received $past
+recited $past
+remembered $past
+sent $past
+took $past
+taught $past
+thought $past
+understood $past
+advising $cont
+suggesting $cont
+accepting $cont
+attacking result = var2 mental_state -3 $cont
+hurtting result = var2 mental_state -3 $cont
+communicating $cont
+confessing $cont
+confiding $cont
+delivering $cont
+disliking result = var1 anger -3 $cont
+dropping $cont
+explaining $cont
+filling $cont
+hating result = var1 anger -3 $cont
+informing $cont
+liking result = var1 mental_state 2 $cont
+presenting $cont
+showing $cont
+reading $cont
+recalling $cont
+receiving $cont
+reciting $cont
+remembering $cont
+sending $cont
+taking $cont
+teaching $cont
+thinking $cont
+understanding $cont
+advised $participle
+suggested $participle
+accepted $participle
+taken $participle

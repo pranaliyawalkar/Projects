@@ -1,0 +1,9 @@
+eat $present
+drink $present
+ate $past
+drank $past
+drinks $present
+eating $cont
+drinking $cont
+eaten $participle
+drunk $participle

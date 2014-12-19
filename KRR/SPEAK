@@ -1,0 +1,152 @@
+announce $present
+ask (INTERROGATIVE) $present
+question (INTERROGATIVE) $present
+quiz (INTERROGATIVE) $present
+plead (INTERROGATIVE) $present
+brag result = var1 mental_state 5 $present
+broadcast $present
+command $present
+comment $present
+criticise result = var2 mental_state -3 $present
+curse result = var2 mental_state -3 $present
+describe $present
+dictate $present
+divulge $present
+foretell $present
+hail $present
+instruct $present
+mention $present
+order $present
+pledge $present
+pray $present
+preach $present
+proclaim $present
+profess $present
+promise $present
+propose $present
+quote $present
+request $present
+report $present
+reply $present
+reveal $present
+say $present
+speak $present
+state $present
+talk $present
+taunt result = var2 mental_state -3 $present
+tell $present
+threaten result = var2 mental_state -4 $present
+announces $sing_present
+asks (INTERROGATIVE) $sing_present
+questions (INTERROGATIVE) $sing_present
+quizzes (INTERROGATIVE) $sing_present
+pleads (INTERROGATIVE) $sing_present
+brags result = var1 mental_state 5 $sing_present
+broadcasts $sing_present
+commands $sing_present
+comments $sing_present
+criticises result = var2 mental_state -3 $sing_present
+curses result = var2 mental_state -3 $sing_present
+describes $sing_present
+dictates $sing_present
+divulges $sing_present
+foretells $sing_present
+hails $sing_present
+instructs $sing_present
+mentions $sing_present
+orders $sing_present
+pledges $sing_present
+prays $sing_present
+preaches $sing_present
+proclaims $sing_present
+professes $sing_present
+promises $sing_present
+proposes $sing_present
+quotes $sing_present
+requests $sing_present
+reports $sing_present
+replies $sing_present
+reveals $sing_present
+says $sing_present
+speaks $sing_present
+states $sing_present
+talks $sing_present
+taunts result = var2 mental_state -3 $sing_present
+tells $sing_present
+threatens result = var2 mental_state -4 $sing_present
+announced $past
+asked (INTERROGATIVE) $past
+questioned (INTERROGATIVE) $past
+quizzed (INTERROGATIVE) $past
+pleaded (INTERROGATIVE) $past
+bragged result = var1 mental_state 5 $past
+broadcasted $past
+commanded $past
+commented $past
+criticised result = var2 mental_state -3 $past
+cursed result = var2 mental_state -3 $past
+described $past
+dictated $past
+divulged $past
+foretold $past
+hailed $past
+instructed $past
+mentioned $past
+ordered $past
+pledged $past
+prayed $past
+preached $past
+proclaimed $past
+professed $past
+promised $past
+proposed $past
+quoted $past
+requested $past
+reported $past
+replied $past
+revealed $past
+said $past
+spoke $past
+stated $past
+talked $past
+taunted result = var2 mental_state -3 $past
+told $past
+threatened result = var2 mental_state -4 $past
+announcing $cont
+asking (INTERROGATIVE) $cont
+questioning (INTERROGATIVE) $cont
+quizzing (INTERROGATIVE) $cont
+pleading (INTERROGATIVE) $cont
+bragging result = var1 mental_state 5 $cont
+broadcasting $cont
+commanding $cont
+commenting $cont
+criticising result = var2 mental_state -3 $cont
+cursing result = var2 mental_state -3 $cont
+describing $cont
+dictating $cont
+divulging $cont
+foretelling $cont
+hailing $cont
+instructing $cont
+mentioning $cont
+ordering $cont
+pledging $cont
+praying $cont
+preaching $cont
+proclaiming $cont
+professing $cont
+promising $cont
+proposing $cont
+quoting $cont
+requesting $cont
+reporting $cont
+replying $cont
+revealing $cont
+saying $cont
+speaking $cont
+stating $cont
+talking $cont
+taunting result = var2 mental_state -3 $cont
+telling $cont
+threatening result = var2 mental_state -4 $cont

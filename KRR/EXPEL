@@ -1,0 +1,16 @@
+bleed result = var1 physical_state -5 $present
+cough $present
+cry $present
+sweat $present
+bleeds result = var1 physical_state -5 $sing_present
+coughs $sing_present
+cries $sing_present
+sweats $sing_present
+bled result = var1 physical_state -5 $past 
+coughed $past
+cried $past
+sweated $past
+bleeding result = var1 physical_state -5 $cont
+coughing $cont
+crying $cont
+sweating $cont

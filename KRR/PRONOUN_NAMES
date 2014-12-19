@@ -1,0 +1,165 @@
+any 
+((OBJECT) + (PERSON))
+NO
+anybody  
+(PERSON)
+NO
+anyone  
+(PERSON)
+NO
+anything
+(OBJECT)
+NO
+both 
+((OBJECT)(OBJECT) + (PERSON)(PERSON))
+YES
+either 
+((OBJECT) + (PERSON))
+YES
+neither  
+((OBJECT) + (PERSON))
+YES
+all
+((OBJECT) + (PERSON))
+NO
+one 
+((OBJECT) + (PERSON))
+NO
+he
+(PERSON)
+YES
+her
+(POSSBY(PERSON))
+YES
+hers  
+(POSSBY(PERSON))
+YES
+herself  
+(PERSON))
+YES
+him  
+(PERSON))
+YES
+himself 
+(PERSON))
+YES
+his
+(POSSBY(PERSON))
+YES
+it  
+(OBJECT)
+YES
+its
+(POSSBY(OBJECT))
+YES
+itself 
+(OBJECT)
+YES
+little  
+(QUANTITY OBJECT 5)
+YES
+few  
+(QUANTITY OBJECT 0)
+YES
+many  
+(QUANTITY OBJECT 5)
+YES
+me  
+(PERSON)
+YES
+mine  
+(POSSBY(PERSON))
+YES
+my  
+(POSSBY(PERSON))
+YES
+myself 
+(PERSON)
+YES
+our
+(POSSBY(((PERSON)(","(PERSON))* ("AND" (PERSON)))))
+YES
+ours  
+((PERSON)(","(PERSON))* ("AND" (PERSON)))
+YES
+ourselves  
+((PERSON)(","(PERSON))* ("AND" (PERSON)))
+YES
+several 
+(((PERSON)(","(PERSON))* ("AND" (PERSON))!) + ((OBJECT)(","(OBJECT))* ("AND" (OBJECT))!))
+NO)
+she  
+(PERSON)
+YES
+some  
+(((PERSON)(","(PERSON))* ("AND" (PERSON))!) + ((OBJECT)(","(OBJECT))* ("AND" (OBJECT))!))
+NO
+somebody  
+(PERSON)
+NO
+someone  
+(PERSON)
+NO
+something 
+(OBJECT)
+NO
+that  
+((OBJECT) + (PERSON) )
+NO
+their  
+(POSSBY(((PERSON)(","(PERSON))* ("AND" (PERSON))) + ((OBJECT)(","(OBJECT))* ("AND" (OBJECT)))))
+YES
+theirs 
+(POSSBY(((PERSON)(","(PERSON))* ("AND" (PERSON))) + ((OBJECT)(","(OBJECT))* ("AND" (OBJECT)))))
+YES
+them  
+((PERSON)(","(PERSON))* ("AND" (PERSON)))
+YES
+themselves  
+((PERSON)(","(PERSON))* ("AND" (PERSON)))
+YES
+these  
+(((PERSON)(","(PERSON))* ("AND" (PERSON))!) + ((OBJECT)(","(OBJECT))* ("AND" (OBJECT))!))
+YES
+they  
+((PERSON)(","(PERSON))* ("AND" (PERSON)))
+YES
+this  
+((OBJECT) + (PERSON))
+NO
+those  
+(((PERSON)(","(PERSON))* ("AND" (PERSON))!) + ((OBJECT)(","(OBJECT))* ("AND" (OBJECT))!))
+YES
+we  
+((PERSON)(","(PERSON))* ("AND" (PERSON)))
+YES
+what 
+(OBJECT)
+INTERROGATIVE)))
+which  
+((OBJECT) + (PERSON))
+INTERROGATIVE)))
+who  
+(PERSON)
+INTERROGATIVE)))
+whom  
+(PERSON)
+INTERROGATIVE)))
+whose
+(POSSBY((PERSON) + (OBJECT)))
+INTERROGATIVE)))
+you  
+((PERSON)(","(PERSON))* ("AND" (PERSON)))
+YES
+your  
+(POSSBY((PERSON)(","(PERSON))* ("AND" (PERSON))))
+YES
+yours  
+(POSSBY((PERSON)(","(PERSON))* ("AND" (PERSON))))
+YES
+yourself  
+((PERSON)(","(PERSON))* ("AND" (PERSON)))
+YES
+yourselves 
+((PERSON)(","(PERSON))* ("AND" (PERSON)))
+YES

@@ -1,0 +1,65 @@
+import java.text.ParseException;
+import java.io.*;
+
+public class krr {
+   public static void main(String [] args) throws IOException {
+     get_domain root = new get_domain();
+	 root.function_politicians(); // Your assignment part is invoked here.
+	 root.function_places();
+	 root.function_pronoun();
+	 root.function_object(); //(Places already done above)
+     root.function_adverb();
+     root.function_adjective();
+  //   System.out.println("-------------------Verbs--------------------------");
+     get_verbs verbs = new get_verbs();
+     verbs.mtrans();
+     verbs.speak();
+     verbs.ptrans();
+     verbs.atrans();
+     verbs.propel();
+     verbs.mbuild();
+     verbs.attendmethod();
+     verbs.ingestmethod();
+     verbs.expelmethod();
+     verbs.statementhod();
+     verbs.graspmethod();
+     verbs.do_something();
+     
+     BufferedWriter out = null;
+     /*try{
+    	 FileWriter fstream = new FileWriter("output.txt", false);
+     }catch(IOException e){
+         System.err.println("Error: " + e.getMessage());
+     }*/
+     FileWriter fstream = new FileWriter("output.txt"); //true tells to append data.
+     out = new BufferedWriter(fstream);
+     
+     System.out.println("Get cd-form [Y/n] : ");
+     String input;
+     input = System.console().readLine();
+     while(!input.equals("n")){
+    	 System.out.println("Enter statement : ");
+    	 input = System.console().readLine();
+    	 Parser parser = new Parser(root, verbs);
+    	 parser.parse(input);
+    	 try  {
+             out.write(parser.global_ret);
+             out.write("\n\n");
+             if(!parser.pass.equals(""))
+            	 out.write(parser.pass);
+         }catch (IOException e){
+             System.err.println("Error: " + e.getMessage());
+         }
+    	 
+    	 System.out.println("Get cd-form [Y/n]");
+    	 input = System.console().readLine();
+     }
+     if(out != null) 
+    	 out.close();
+         
+     
+   }
+} 
+
+
+

@@ -1,0 +1,96 @@
+accept $present
+bestow result = var2 mental_state 2 $present
+want result = var2 mental_state 2 future $present
+demand result = var2 mental_state 2 future $present
+desire result = var2 mental_state 2 future $present
+need result = var2 mental_state 2 future $present
+dole result = var2 mental_state 2 $present
+transfer $present
+transferred $past
+transferring $cont
+transfers $sing_present
+earn $present
+get $present
+gather $present
+give $present
+hand $present
+keep $present
+lose $present
+obtain $present
+pay $present
+present result = var2 mental_state 5 $present
+provide $present
+receive $present
+rob result = var2 mental_state 5 $present
+sell $present
+spend $present
+take $present
+accepts $sing_present
+bestows result = var2 mental_state 2 $sing_present
+wants result = var2 mental_state 2 future $sing_present
+demands result = var2 mental_state 2 future $sing_present
+desires result = var2 mental_state 2 future $sing_present
+needs result = var2 mental_state 2 future $sing_present
+doles result = var2 mental_state 2 $sing_present
+earns $sing_present
+gets $sing_present
+gathers $sing_present
+gives $sing_present
+hands $sing_present
+keeps $sing_present
+loses $sing_present
+obtains $sing_present
+pays $sing_present
+presents result = var2 mental_state 5 $sing_present
+provides $sing_present
+receives $sing_present
+robs result = var2 mental_state 5 $sing_present
+sells $sing_present
+spends $sing_present
+takes $sing_present
+accepted $past
+bestowed result = var2 mental_state 2 $past
+wanted result = var2 mental_state 2 future $past
+demanded result = var2 mental_state 2 future $past
+desired result = var2 mental_state 2 future $past
+needed result = var2 mental_state 2 future $past
+doled result = var2 mental_state 2 $past
+earned $past
+got $past
+gathered $past
+gave $past
+handed $past
+kept $past
+lost $past
+obtained $past
+paid $past
+presented result = var2 mental_state 5 $past
+provided $past
+received $past
+robbed result = var2 mental_state 5 $past
+sold $past
+spent $past
+took $past
+accepting $cont
+wanting result = var2 mental_state 2 future $cont
+demanding result = var2 mental_state 2 future $cont
+desiring result = var2 mental_state 2 future $cont
+needing result = var2 mental_state 2 future $cont
+doling result = var2 mental_state 2 $cont
+earning $cont
+getting $cont
+gathering $cont
+giving $cont
+handing $cont
+keeping $cont
+losing $cont
+obtaining $cont
+paying $cont
+presenting result = var2 mental_state 5 $cont
+providing $cont
+receiving $cont
+robbing result = var2 mental_state 5 $cont
+selling $cont
+spending $cont
+taking $cont
+

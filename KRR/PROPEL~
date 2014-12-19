@@ -1,0 +1,28 @@
+attack result = var2 physical_state -7 $present 
+bruise result = var2 physical_state -7 $present
+fight result = var2 physical_state -7 result = var1 physical_state -7 $present
+hit result = var2 physical_state -7 $present
+pelt result = var2 physical_state -7 $present
+shoot $present
+slap $present
+hurt $present
+attacks result = var2 physical_state -7 $sing_present 
+bruises result = var2 physical_state -7 $sing_present
+fights result = var2 physical_state -7 result = var1 physical_state -7 $sing_present
+hits result = var2 physical_state -7 $sing_present
+pelts result = var2 physical_state -7 $sing_present
+shoots $sing_present
+slaps $sing_present
+attacked result = var2 physical_state -7 $past 
+bruised result = var2 physical_state -7 $past
+fought result = var2 physical_state -7 result = var1 physical_state -7 $past
+pelted result = var2 physical_state -7 $past
+shot $past
+slapped $past
+attacking result = var2 physical_state -7 $cont 
+bruising result = var2 physical_state -7 $cont
+fighting result = var2 physical_state -7 result = var1 physical_state -7 $cont
+hitting result = var2 physical_state -7 $cont
+pelting result = var2 physical_state -7 $cont
+shooting $cont
+slapping $cont

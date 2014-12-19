@@ -1,0 +1,8 @@
+grab $present
+hold $present
+grabs $sing_present
+holds $sing_present
+grabbed $past
+held $past
+grabbing $cont
+holding $cont

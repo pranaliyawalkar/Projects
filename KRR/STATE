@@ -1,0 +1,32 @@
+believe LOC(M) VAR1 VAR2 $present
+deny NOTLOC(M) VAR1 VAR2 $present
+forget NOTLOC(M) VAR1 VAR2 $present
+have POSS var1 var2 $present
+know LOC(M) VAR1 VAR2 $present
+mourn STATE VAR1 mental_state -2 $present
+own POSS var1 var2 $present
+possess POSS var1 var2 $present
+believes LOC(M) VAR1 VAR2 $present
+denies NOTLOC(M) VAR1 VAR2 $present
+forgets NOTLOC(M) VAR1 VAR2 $present
+has POSS var1 var2 $present
+knows LOC(M) VAR1 VAR2 $sing_present
+mourns STATE VAR1 mental_state -2 $sing_present
+owns POSS var1 var2 $sing_present
+possesses POSS var1 var2 $sing_present
+believed LOC(M) VAR1 VAR2 $past
+denied NOTLOC(M) VAR1 VAR2 $past 
+forgot NOTLOC(M) VAR1 VAR2 $past
+had POSS var1 var2 $past
+knew LOC(M) VAR1 VAR2 $past
+mourned STATE VAR1 mental_state -2 $past 
+owned POSS var1 var2 $past
+possessed POSS var1 var2 $past
+believing LOC(M) VAR1 VAR2 $cont
+denying NOTLOC(M) VAR1 VAR2 $cont
+forgetting NOTLOC(M) VAR1 VAR2 $cont
+having POSS var1 var2 $cont
+knowing LOC(M) VAR1 VAR2 $cont
+mourning STATE VAR1 mental_state -2 $cont
+owning POSS var1 var2 $cont
+possessing POSS var1 var2 $cont

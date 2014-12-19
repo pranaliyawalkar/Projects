@@ -1,0 +1,794 @@
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+
+public class get_verbs {
+	mtrans[] mtrans_verbs = new mtrans[100];
+	speak[] speak_verbs = new speak[100];
+	ptrans[] ptrans_verbs = new ptrans[100];
+	atrans[] atrans_verbs = new atrans[100];
+	propel[] propel_verbs = new propel[100];
+	mbuild[] mbuild_verbs = new mbuild[100];
+	do_something1[] do_something_1_verbs = new do_something1[100];
+	do_something2[] do_something_2_verbs = new do_something2[100];
+
+	public void mtrans()
+	{
+		try 
+		{
+			File inFile = new File("MTRANS");
+		    FileInputStream fstream = new FileInputStream(inFile);
+		    DataInputStream in = new DataInputStream(fstream);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			String strLine;
+			int i=0;
+			try 
+			{
+				while ((strLine = br.readLine()) != null)   
+				{
+					StringTokenizer stt = new StringTokenizer(strLine," ");
+					mtrans_verbs[i] = new mtrans();
+					int j=0;
+					int to_be_changed=0;
+					String field_to_be_changed = new String();
+			        while (stt.hasMoreTokens()){
+			            String token = stt.nextToken();
+			            //System.out.println(token);
+			           if(j==0)
+			           {
+			        	   mtrans_verbs[i].name = token;
+			        	   mtrans_verbs[i].token = token;
+			           }
+			           if(j==3)
+			           {
+			        	   to_be_changed = token.charAt(token.length()-1) - '0';
+			        	   //System.out.println(to_be_changed);
+			           }
+			           if(j==4)
+			           {
+			        	   field_to_be_changed = token;
+			        	  // System.out.println(field_to_be_changed);
+			           }
+			           if(j==5)
+			           {
+			        	   if(to_be_changed==1)
+			        	   {
+			        		  // System.out.println(field_to_be_changed);
+			        		   if(field_to_be_changed.equals( "mental_state"))
+			        		   {
+			        			   //System.out.println("check");
+			        			   mtrans_verbs[i].source.mental_state = Integer.parseInt(token);
+			        			   //System.out.println(Integer.parseInt(token));
+			        		   }
+			        		   if(field_to_be_changed .equals("physical_state"))
+			        			   mtrans_verbs[i].source.physical_state = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("health"))
+			        			   mtrans_verbs[i].source.health = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("anger"))
+			        			   mtrans_verbs[i].source.anger = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("fear") )
+			        			   mtrans_verbs[i].source.fear = Integer.parseInt(token);
+			        	   }
+			        	   if(to_be_changed==2)
+			        	   {
+			        		   //System.out.println(field_to_be_changed);
+			        		   if(field_to_be_changed.equals("mental_state"))
+			        		   {
+			        			   //System.out.println("check");
+			        			   mtrans_verbs[i].dest.mental_state = Integer.parseInt(token);
+			        			   //System.out.println(Integer.parseInt(token));
+			        		   }
+			        		   if(field_to_be_changed .equals("physical_state"))
+			        			   mtrans_verbs[i].dest.physical_state = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("health"))
+			        			   mtrans_verbs[i].dest.health = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("anger"))
+			        			   mtrans_verbs[i].dest.anger = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("fear") )
+			        			   mtrans_verbs[i].dest.fear = Integer.parseInt(token);
+			        	   }
+			        	   
+			           }
+			           j++;
+			        }
+			        mtrans_verbs[i].part_of_speech = "verb";
+			        mtrans_verbs[i].cd_form = "(MTRANS(FROM ?VAR1)(TO ?VAR2)(OBJECT ?VAR3))";
+					i++;
+				}
+				int k;
+				for(k=0;k<i;k++)
+					System.out.println(mtrans_verbs[k].name + "  " + mtrans_verbs[k].source.mental_state + " " + mtrans_verbs[k].dest.mental_state);
+				br.close();
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		} 
+		catch (FileNotFoundException fe)
+		{
+		    fe.printStackTrace();
+		}
+		
+	}
+	public void speak()
+	{
+		try 
+		{
+			File inFile = new File("SPEAK");
+		    FileInputStream fstream = new FileInputStream(inFile);
+		    DataInputStream in = new DataInputStream(fstream);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			String strLine;
+			int i=0;
+			try 
+			{
+				while ((strLine = br.readLine()) != null)   
+				{
+					StringTokenizer stt = new StringTokenizer(strLine," ");
+					speak_verbs[i] = new speak();
+					int j=0;
+					int to_be_changed=0;
+					String field_to_be_changed = new String();
+			        while (stt.hasMoreTokens()){
+			            String token = stt.nextToken();
+			            //System.out.println(token);
+			           if(j==0)
+			           {
+			        	   speak_verbs[i].name = token;
+			        	   speak_verbs[i].token = token;
+			           }
+			           if (j==1 && (token.equals("(INTERROGATIVE)")))
+			           {
+			        	   speak_verbs[i].interrogative =1;
+			           }
+			           if(j==3)
+			           {
+			        	   to_be_changed = token.charAt(token.length()-1) - '0';
+			        	   //System.out.println(to_be_changed);
+			           }
+			           if(j==4)
+			           {
+			        	   field_to_be_changed = token;
+			        	  // System.out.println(field_to_be_changed);
+			           }
+			           if(j==5)
+			           {
+			        	   if(to_be_changed==1)
+			        	   {
+			        		  // System.out.println(field_to_be_changed);
+			        		   if(field_to_be_changed.equals( "mental_state"))
+			        		   {
+			        			   //System.out.println("check");
+			        			   speak_verbs[i].source.mental_state = Integer.parseInt(token);
+			        			   //System.out.println(Integer.parseInt(token));
+			        		   }
+			        		   if(field_to_be_changed .equals("physical_state"))
+			        			   speak_verbs[i].source.physical_state = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("health"))
+			        			   speak_verbs[i].source.health = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("anger"))
+			        			   speak_verbs[i].source.anger = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("fear") )
+			        			   speak_verbs[i].source.fear = Integer.parseInt(token);
+			        	   }
+			        	   if(to_be_changed==2)
+			        	   {
+			        		   //System.out.println(field_to_be_changed);
+			        		   if(field_to_be_changed.equals("mental_state"))
+			        		   {
+			        			   //System.out.println("check");
+			        			   speak_verbs[i].dest.mental_state = Integer.parseInt(token);
+			        			   //System.out.println(Integer.parseInt(token));
+			        		   }
+			        		   if(field_to_be_changed .equals("physical_state"))
+			        			   speak_verbs[i].dest.physical_state = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("health"))
+			        			   speak_verbs[i].dest.health = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("anger"))
+			        			   speak_verbs[i].dest.anger = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("fear") )
+			        			   speak_verbs[i].dest.fear = Integer.parseInt(token);
+			        	   }
+			        	   
+			           }
+			           j++;
+			        }
+			        speak_verbs[i].part_of_speech = "verb";
+			        speak_verbs[i].cd_form = "(SPEAK(FROM ?VAR1)(TO ?VAR2)(OBJECT ?VAR3))";
+					i++;
+				}
+				int k;
+				for(k=0;k<i;k++)
+					System.out.println(speak_verbs[k].name + "  " + speak_verbs[k].source.mental_state + " " + speak_verbs[k].dest.mental_state+" "+speak_verbs[k].interrogative);
+				br.close();
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		} 
+		catch (FileNotFoundException fe)
+		{
+		    fe.printStackTrace();
+		}
+		
+	}
+	public void ptrans()
+	{
+		try 
+		{
+			File inFile = new File("PTRANS");
+		    FileInputStream fstream = new FileInputStream(inFile);
+		    DataInputStream in = new DataInputStream(fstream);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			String strLine;
+			int i=0;
+			try 
+			{
+				while ((strLine = br.readLine()) != null)   
+				{
+					StringTokenizer stt = new StringTokenizer(strLine," ");
+					ptrans_verbs[i] = new ptrans();
+					int j=0;
+					int to_be_changed=0;
+					String field_to_be_changed = new String();
+			        while (stt.hasMoreTokens()){
+			            String token = stt.nextToken();
+			            //System.out.println(token);
+			           if(j==0)
+			           {
+			        	   ptrans_verbs[i].name = token;
+			        	   ptrans_verbs[i].token = token;
+			           }
+			           if(j==3)
+			           {
+			        	   to_be_changed = token.charAt(token.length()-1) - '0';
+			        	   //System.out.println(to_be_changed);
+			           }
+			           if(j==4)
+			           {
+			        	   field_to_be_changed = token;
+			        	  // System.out.println(field_to_be_changed);
+			           }
+			           if(j==5)
+			           {
+			        	   if(to_be_changed==1)
+			        	   {
+			        		  // System.out.println(field_to_be_changed);
+			        		   if(field_to_be_changed.equals( "mental_state"))
+			        		   {
+			        			   //System.out.println("check");
+			        			   ptrans_verbs[i].source.mental_state = Integer.parseInt(token);
+			        			   //System.out.println(Integer.parseInt(token));
+			        		   }
+			        		   if(field_to_be_changed .equals("physical_state"))
+			        			   ptrans_verbs[i].source.physical_state = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("health"))
+			        			   ptrans_verbs[i].source.health = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("anger"))
+			        			   ptrans_verbs[i].source.anger = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("fear") )
+			        			   ptrans_verbs[i].source.fear = Integer.parseInt(token);
+			        	   }
+			        	   if(to_be_changed==2)
+			        	   {
+			        		   //System.out.println(field_to_be_changed);
+			        		   if(field_to_be_changed.equals("mental_state"))
+			        		   {
+			        			   //System.out.println("check");
+			        			   ptrans_verbs[i].dest.mental_state = Integer.parseInt(token);
+			        			   //System.out.println(Integer.parseInt(token));
+			        		   }
+			        		   if(field_to_be_changed .equals("physical_state"))
+			        			   ptrans_verbs[i].dest.physical_state = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("health"))
+			        			   ptrans_verbs[i].dest.health = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("anger"))
+			        			   ptrans_verbs[i].dest.anger = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("fear") )
+			        			   ptrans_verbs[i].dest.fear = Integer.parseInt(token);
+			        	   }
+			        	   
+			           }
+			           j++;
+			        }
+			        ptrans_verbs[i].part_of_speech = "verb";
+			        ptrans_verbs[i].cd_form = "(PTRANS(FROM ?VAR1)(TO ?VAR2)(OBJECT ?VAR3)(ACTOR ?VAR4))";
+					i++;
+				}
+				int k;
+				for(k=0;k<i;k++)
+					System.out.println(ptrans_verbs[k].name + "  " + ptrans_verbs[k].source.mental_state + " " + ptrans_verbs[k].dest.mental_state);
+				br.close();
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		} 
+		catch (FileNotFoundException fe)
+		{
+		    fe.printStackTrace();
+		}
+		
+	}
+	public void atrans()
+	{
+		try 
+		{
+			File inFile = new File("ATRANS");
+		    FileInputStream fstream = new FileInputStream(inFile);
+		    DataInputStream in = new DataInputStream(fstream);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			String strLine;
+			int i=0;
+			try 
+			{
+				while ((strLine = br.readLine()) != null)   
+				{
+					StringTokenizer stt = new StringTokenizer(strLine," ");
+					atrans_verbs[i] = new atrans();
+					int j=0;
+					int to_be_changed=0;
+					String field_to_be_changed = new String();
+			        while (stt.hasMoreTokens()){
+			            String token = stt.nextToken();
+			            //System.out.println(token);
+			           if(j==0)
+			           {
+			        	   atrans_verbs[i].name = token;
+			        	   atrans_verbs[i].token = token;
+			           }
+			           if(j==3)
+			           {
+			        	   to_be_changed = token.charAt(token.length()-1) - '0';
+			        	   //System.out.println(to_be_changed);
+			           }
+			           if(j==4)
+			           {
+			        	   field_to_be_changed = token;
+			        	  // System.out.println(field_to_be_changed);
+			           }
+			           if(j==5)
+			           {
+			        	   if(to_be_changed==1)
+			        	   {
+			        		  // System.out.println(field_to_be_changed);
+			        		   if(field_to_be_changed.equals( "mental_state"))
+			        		   {
+			        			   //System.out.println("check");
+			        			   atrans_verbs[i].source.mental_state = Integer.parseInt(token);
+			        			   //System.out.println(Integer.parseInt(token));
+			        		   }
+			        		   if(field_to_be_changed .equals("physical_state"))
+			        			   atrans_verbs[i].source.physical_state = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("health"))
+			        			   atrans_verbs[i].source.health = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("anger"))
+			        			   atrans_verbs[i].source.anger = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("fear") )
+			        			   atrans_verbs[i].source.fear = Integer.parseInt(token);
+			        	   }
+			        	   if(to_be_changed==2)
+			        	   {
+			        		   //System.out.println(field_to_be_changed);
+			        		   if(field_to_be_changed.equals("mental_state"))
+			        		   {
+			        			   //System.out.println("check");
+			        			   atrans_verbs[i].dest.mental_state = Integer.parseInt(token);
+			        			   //System.out.println(Integer.parseInt(token));
+			        		   }
+			        		   if(field_to_be_changed .equals("physical_state"))
+			        			   atrans_verbs[i].dest.physical_state = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("health"))
+			        			   atrans_verbs[i].dest.health = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("anger"))
+			        			   atrans_verbs[i].dest.anger = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("fear") )
+			        			   atrans_verbs[i].dest.fear = Integer.parseInt(token);
+			        	   }
+			        	   
+			           }
+			           if(j==6)
+			        	   atrans_verbs[i].time_of_action = token;
+			           j++;
+			        }
+			        atrans_verbs[i].part_of_speech = "verb";
+			        atrans_verbs[i].cd_form = "(ATRANS(FROM ?VAR1)(TO ?VAR2)(OBJECT ?VAR3)(ACTOR ?VAR4))";
+					i++;
+				}
+				int k;
+				for(k=0;k<i;k++)
+					System.out.println(atrans_verbs[k].name + "  " + atrans_verbs[k].source.mental_state + " " + atrans_verbs[k].dest.mental_state+" "+atrans_verbs[k].time_of_action);
+				br.close();
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		} 
+		catch (FileNotFoundException fe)
+		{
+		    fe.printStackTrace();
+		}
+		
+	}
+	public void propel()
+	{
+		try 
+		{
+			File inFile = new File("PROPEL");
+		    FileInputStream fstream = new FileInputStream(inFile);
+		    DataInputStream in = new DataInputStream(fstream);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			String strLine;
+			int i=0;
+			try 
+			{
+				while ((strLine = br.readLine()) != null)   
+				{
+					StringTokenizer stt = new StringTokenizer(strLine," ");
+					propel_verbs[i] = new propel();
+					int j=0;
+					int to_be_changed=0;
+					String field_to_be_changed = new String();
+			        while (stt.hasMoreTokens())
+			        {
+			            String token = stt.nextToken();
+			            //System.out.println(token);
+			           if(j==0)
+			           {
+			        	   propel_verbs[i].name = token;
+			        	   propel_verbs[i].token = token;
+			           }
+			           if(j==3)
+			           {
+			        	   to_be_changed = token.charAt(token.length()-1) - '0';
+			        	   //System.out.println(to_be_changed);
+			           }
+			           if(j==4)
+			           {
+			        	   field_to_be_changed = token;
+			        	  // System.out.println(field_to_be_changed);
+			           }
+			           if(j==5)
+			           {
+			        	   if(to_be_changed==1)
+			        	   {
+			        		  // System.out.println(field_to_be_changed);
+			        		   if(field_to_be_changed.equals( "mental_state"))
+			        		   {
+			        			   //System.out.println("check");
+			        			   propel_verbs[i].source.mental_state = Integer.parseInt(token);
+			        			   //System.out.println(Integer.parseInt(token));
+			        		   }
+			        		   if(field_to_be_changed .equals("physical_state"))
+			        			   propel_verbs[i].source.physical_state = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("health"))
+			        			   propel_verbs[i].source.health = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("anger"))
+			        			   propel_verbs[i].source.anger = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("fear") )
+			        			   propel_verbs[i].source.fear = Integer.parseInt(token);
+			        	   }
+			        	   if(to_be_changed==2)
+			        	   {
+			        		   //System.out.println(field_to_be_changed);
+			        		   if(field_to_be_changed.equals("mental_state"))
+			        		   {
+			        			   //System.out.println("check");
+			        			   propel_verbs[i].dest.mental_state = Integer.parseInt(token);
+			        			   //System.out.println(Integer.parseInt(token));
+			        		   }
+			        		   if(field_to_be_changed .equals("physical_state"))
+			        		   {
+			        			  // System.out.println(Integer.parseInt(token));
+			        			   propel_verbs[i].dest.physical_state = Integer.parseInt(token);
+			        		   }
+			        		   if(field_to_be_changed.equals("health"))
+			        			   propel_verbs[i].dest.health = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("anger"))
+			        			   propel_verbs[i].dest.anger = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("fear") )
+			        			   propel_verbs[i].dest.fear = Integer.parseInt(token);
+			        	   }
+			        	   
+			           }
+			           if(j==8)
+			           {
+			        	   to_be_changed = token.charAt(token.length()-1) - '0';
+			        	   //System.out.println(to_be_changed);
+			           }
+			           if(j==9)
+			           {
+			        	   field_to_be_changed = token;
+			        	  // System.out.println(field_to_be_changed);
+			           }
+			           if(j==10)
+			           {
+			        	   if(to_be_changed==1)
+			        	   {
+			        		  // System.out.println(field_to_be_changed);
+			        		   if(field_to_be_changed.equals( "mental_state"))
+			        		   {
+			        			   //System.out.println("check");
+			        			   propel_verbs[i].source.mental_state = Integer.parseInt(token);
+			        			   //System.out.println(Integer.parseInt(token));
+			        		   }
+			        		   if(field_to_be_changed .equals("physical_state"))
+			        		   {
+			        			   System.out.println(Integer.parseInt(token));
+			        			   propel_verbs[i].source.physical_state = Integer.parseInt(token);
+			        		   }
+			        		   if(field_to_be_changed.equals("health"))
+			        			   propel_verbs[i].source.health = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("anger"))
+			        			   propel_verbs[i].source.anger = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("fear") )
+			        			   propel_verbs[i].source.fear = Integer.parseInt(token);
+			        	   }
+			        	   if(to_be_changed==2)
+			        	   {
+			        		   //System.out.println(field_to_be_changed);
+			        		   if(field_to_be_changed.equals("mental_state"))
+			        		   {
+			        			   //System.out.println("check");
+			        			   propel_verbs[i].dest.mental_state = Integer.parseInt(token);
+			        			   //System.out.println(Integer.parseInt(token));
+			        		   }
+			        		   if(field_to_be_changed .equals("physical_state"))
+			        			   propel_verbs[i].dest.physical_state = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("health"))
+			        			   propel_verbs[i].dest.health = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("anger"))
+			        			   propel_verbs[i].dest.anger = Integer.parseInt(token);
+			        		   if(field_to_be_changed.equals("fear") )
+			        			   propel_verbs[i].dest.fear = Integer.parseInt(token);
+			        	   }
+			        	   
+			           }
+			           j++;
+			        }
+			        propel_verbs[i].part_of_speech = "verb";
+			        propel_verbs[i].cd_form = "((PROPEL(FROM ?VAR1)(TO ?VAR2)(OBJECT ?VAR3))(PHYSCONT(?VAR2,?VAR3)))";
+					i++;
+				}
+				int k;
+				for(k=0;k<i;k++)
+					System.out.println(propel_verbs[k].name + "  " + propel_verbs[k].source.physical_state + " " + propel_verbs[k].dest.physical_state);
+				br.close();
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		} 
+		catch (FileNotFoundException fe)
+		{
+		    fe.printStackTrace();
+		}
+		
+	}
+	public void mbuild()
+	{
+		try 
+		{
+			File inFile = new File("MBUILD");
+		    FileInputStream fstream = new FileInputStream(inFile);
+		    DataInputStream in = new DataInputStream(fstream);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			String strLine;
+			int i=0;
+			try 
+			{
+				while ((strLine = br.readLine()) != null)   
+				{
+					mbuild_verbs[i] = new mbuild();
+					mbuild_verbs[i].name = strLine;
+					mbuild_verbs[i].token = strLine;
+					mbuild_verbs[i].part_of_speech = "verb";
+					mbuild_verbs[i].cd_form = "MBUILD((ACTOR ?VAR1)(INITIAL ?VAR2)(FINAL ?VAR3))";
+					i++;
+				}
+			}
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		} 
+			catch (FileNotFoundException fe)
+			{
+			    fe.printStackTrace();
+			}
+	}
+	public void do_something()
+	{
+		try 
+		{
+			File inFile = new File("DO_SOMETHING");
+		    FileInputStream fstream = new FileInputStream(inFile);
+		    DataInputStream in = new DataInputStream(fstream);
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			String strLine;
+			int i=0;
+			int k=0;
+			String name = new String();
+			try 
+			{
+				while ((strLine = br.readLine()) != null)   
+				{
+					StringTokenizer stt = new StringTokenizer(strLine," ");
+					int j=0;
+					int to_be_changed=0;
+					int flag=0;
+					String field_to_be_changed = new String();
+			        while (stt.hasMoreTokens())
+			        {
+			            String token = stt.nextToken();
+			            //System.out.println(token);
+			           if(j==0)
+			           {
+			        	   name = token;
+			           }
+			           if(j==1 && token.equals("person"))
+			           {
+			        	   do_something_1_verbs[i] = new do_something1();
+			        	   do_something_1_verbs[i].name = name;
+			        	   do_something_1_verbs[i].token = name;
+			        	   do_something_1_verbs[i].part_of_speech = "verb";
+			        	  // System.out.println(token);
+			        	   flag=1;
+			           }
+			           if(j==1 && token.equals("object"))
+			           {
+			        	   do_something_2_verbs[k] = new do_something2();
+			        	   do_something_2_verbs[k].name = name;
+			        	   do_something_2_verbs[k].token = name;
+			        	   do_something_2_verbs[k].part_of_speech = "verb";
+			        	   flag=2;
+			           }
+			           if(j==2 && token.equals("abstract"))
+			           {
+			        	   if(flag==1)
+			        		   do_something_1_verbs[i].using_instrument.part_of_speech = "ABSTRACT-NOUN-PHRASE";
+			        	   else
+			        		   do_something_2_verbs[k].using_instrument.part_of_speech = "ABSTRACT-NOUN-PHRASE";
+			        		   
+			           }
+			           if(j==5)
+			           {
+			        	   to_be_changed = token.charAt(token.length()-1) - '0';
+			        	   //System.out.println(to_be_changed);
+			           }
+			           if(j==6)
+			           {
+			        	   field_to_be_changed = token;
+			        	  // System.out.println(field_to_be_changed);
+			           }
+			           if(j==7)
+			           {
+			        	   if(flag==1)
+			        	   {
+			        		   do_something_1_verbs[i].name=name;
+			        		   do_something_1_verbs[i].token = name;
+			        		   if(to_be_changed==1) //actor to be changed
+			        		   {
+			        			   if(field_to_be_changed.equals( "mental_state"))
+				        		   {
+				        			   //System.out.println("check");
+				        			   do_something_1_verbs[i].actor.mental_state = Integer.parseInt(token);
+				        			   //System.out.println(Integer.parseInt(token));
+				        		   }
+				        		   if(field_to_be_changed .equals("physical_state"))
+				        		   {
+				        			   System.out.println(Integer.parseInt(token));
+				        			   do_something_1_verbs[i].actor.physical_state = Integer.parseInt(token);
+				        		   }
+				        		   if(field_to_be_changed.equals("health"))
+				        			   do_something_1_verbs[i].actor.health = Integer.parseInt(token);
+				        		   if(field_to_be_changed.equals("anger"))
+				        			   do_something_1_verbs[i].actor.anger = Integer.parseInt(token);
+				        		   if(field_to_be_changed.equals("fear") )
+				        			   do_something_1_verbs[i].actor.fear = Integer.parseInt(token);
+			        		   }
+			        		   if(to_be_changed==2) //actor to be changed
+			        		   {
+			        			   if(field_to_be_changed.equals( "mental_state"))
+				        		   {
+				        			   //System.out.println("check");
+				        			   do_something_1_verbs[i].object.mental_state = Integer.parseInt(token);
+				        			   //System.out.println(Integer.parseInt(token));
+				        		   }
+				        		   if(field_to_be_changed .equals("physical_state"))
+				        		   {
+				        			   System.out.println(Integer.parseInt(token));
+				        			   do_something_1_verbs[i].object.physical_state = Integer.parseInt(token);
+				        		   }
+				        		   if(field_to_be_changed.equals("health"))
+				        			   do_something_1_verbs[i].object.health = Integer.parseInt(token);
+				        		   if(field_to_be_changed.equals("anger"))
+				        			   do_something_1_verbs[i].object.anger = Integer.parseInt(token);
+				        		   if(field_to_be_changed.equals("fear") )
+				        			   do_something_1_verbs[i].object.fear = Integer.parseInt(token);
+				        		   do_something_1_verbs[i].cd_form = "(DO SOMETHING(ACTOR ?VAR1)(OBJECT ?VAR2)(USING ?VAR3))";
+				        		   if(field_to_be_changed.equals("NOT"))
+				        		   {
+				        			   do_something_1_verbs[i].cd_form = "((DO SOMETHING(ACTOR ?VAR1)(OBJECT ?VAR2)(USING ?VAR3))(RESULT(?VAR2,NOT ?VAR4)))";
+				        		   }
+			        		   }
+			        		 i++;
+			        	   }
+			        	   if(flag==2)
+			        	   {
+			        		   do_something_2_verbs[k].name=name;
+			        		   do_something_2_verbs[k].token = name;
+			        		   if(to_be_changed==1) //actor to be changed
+			        		   {
+			        			   if(field_to_be_changed.equals( "mental_state"))
+				        		   {
+				        			   //System.out.println("check");
+				        			   do_something_2_verbs[k].actor.mental_state = Integer.parseInt(token);
+				        			   //System.out.println(Integer.parseInt(token));
+				        		   }
+				        		   if(field_to_be_changed .equals("physical_state"))
+				        		   {
+				        			   System.out.println(Integer.parseInt(token));
+				        			   do_something_2_verbs[k].actor.physical_state = Integer.parseInt(token);
+				        		   }
+				        		   if(field_to_be_changed.equals("health"))
+				        			   do_something_2_verbs[k].actor.health = Integer.parseInt(token);
+				        		   if(field_to_be_changed.equals("anger"))
+				        			   do_something_2_verbs[k].actor.anger = Integer.parseInt(token);
+				        		   if(field_to_be_changed.equals("fear") )
+				        			   do_something_2_verbs[k].actor.fear = Integer.parseInt(token);
+			        		   }
+			        		   if(to_be_changed==2) //actor to be changed
+			        		   {
+			        			  
+				        		   if(field_to_be_changed .equals("physical_state"))
+				        		   {
+				        			   System.out.println(Integer.parseInt(token));
+				        			   do_something_2_verbs[k].object.physical_state = Integer.parseInt(token);
+				        		   }
+				        		   if(field_to_be_changed.equals("size"))
+				        			   do_something_2_verbs[k].object.size = Integer.parseInt(token);
+				        		   if(field_to_be_changed.equals("quality"))
+				        			   do_something_2_verbs[k].object.quality = Integer.parseInt(token);
+			        		   }
+			        		   do_something_2_verbs[k].cd_form = "(DO SOMETHING(ACTOR ?VAR1)(OBJECT ?VAR2)(USING ?VAR3))";
+			        		   k++;
+			        	   }
+			           }
+			           j++;
+			        }
+				}
+				int l;
+				for(l=0;l<i;l++)
+				{
+					//System.out.println(l);
+					System.out.println(do_something_1_verbs[l].name + "  "+do_something_1_verbs[l].cd_form);
+				}
+					for(l=0;l<k;l++)
+					System.out.println(do_something_2_verbs[l].name + "  "+do_something_2_verbs[l].object.size+" "+do_something_2_verbs[l].object.quality+" "+do_something_2_verbs[l].object.physical_state);
+				br.close();
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+		} 
+		catch (FileNotFoundException fe)
+		{
+		    fe.printStackTrace();
+		}
+		
+	}
+}
+
