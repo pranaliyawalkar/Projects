@@ -1,0 +1,18 @@
+#
+#
+CXX = icpc
+CXXFLAGS = -O3 -g -pthread
+
+TARGET = parallel_bfs
+SRC = parallel_bfs.cpp
+
+.PHONY: all
+all: $(TARGET)
+
+
+$(TARGET): $(SRC)
+	$(CXX) -o $@ $(CXXFLAGS) $^
+
+.PHONY: clean
+clean:
+	rm -f $(TARGET)
