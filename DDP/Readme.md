@@ -9,5 +9,9 @@ Codes :
 * Squark : https://bitbucket.org/pranali46/route-skyline-queries-keyword-networks 
 
 Thesis : 
+
 * Mantra : Mantra.pdf
 * Squark : Please contact me (pranali.yawalkar@gmail.com)
+
+Presentation : 
+* Mantra : DDPPresentation.pdf
