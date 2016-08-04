@@ -11,7 +11,8 @@ Codes :
 Thesis : 
 
 * Mantra : Mantra.pdf
-* Squark : Please contact me (pranali.yawalkar@gmail.com)
+* Squark : Please contact me (pranali.yawalkar@gmail.com) to unlock PranaliThesis.pdf
 
 Presentation : 
+
 * Mantra : DDPPresentation.pdf
